@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 10, 2018, 8:38:49 PM
+    Author     : harmeet.singh
+*/
+
+h4{
+     color: brown;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 20px
+}
+
+body{
+    
+    background: bisque;
+    font-family: sans-serif;
+}
+
+
+footer {
+   position:absolute;
+   bottom:10px;
+   width:100%;
+}
+
+
+a:visited{
+    color: green;
+    font-size: 12px;
+}
+a:hover{
+    
+    color: red;
+}
+a:active{
+    color: blue;
+}
+button{
+    
+   background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    width: 100%;
+    float: left;
+   
+}
+
+button:hover {
+    opacity:1;
+}
+
