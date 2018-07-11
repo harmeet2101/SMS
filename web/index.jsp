@@ -14,11 +14,10 @@
     </head>
     <body>
         <h4>Student Management System</h4><hr />
-        <h5 style="text-align: center;color: black">Admin Panel</h5>
         <table align="center" style="padding-top: 30px">
             <tr>
                 <td>
-                    <a href="adminLoginPage.jsp">Login</a> | <a href="registerPage">Register</a>
+                    <a href="adminLoginPage.jsp">Login</a> | <a href="registerPage.jsp">Register</a>
                 </td>
             </tr>
               

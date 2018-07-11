@@ -1,6 +1,6 @@
 <%-- 
-    Document   : adminLoginPage
-    Created on : Jul 10, 2018, 8:48:01 PM
+    Document   : registerPage
+    Created on : Jul 11, 2018, 2:12:50 PM
     Author     : harmeet.singh
 --%>
 
@@ -10,26 +10,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Admin LoginPage</title>
+        <title>Register Page</title>
         <link href="css/myStyle.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
         <h4>Student Management System</h4><hr />
-        <h5 style="text-align: center;color: black">Login</h5>
+        <h5 style="text-align: center;color: black">Register</h5>
         
         <div align="center">
-            <s:form action="loginAction" method="post">
+            <s:form action="registerAction" method="post">
+                <s:textfield name="firstName" type="text" label="First Name"/>
+                <s:textfield name="lastName" type="text" label="Last Name"/>
                 <s:textfield name="email" type="text" label="Email"/>
                 <s:textfield name="password" type="password" label="Password"/>
                 <s:select
-			            label="Login Type"
+			            label="Registeration Type"
 			            list="{'admin','employee'}"
-			            name="loginType"/>
-                <s:submit value="login"/>
+			            name="registerationType"/>
+                <s:submit value="Register"/>
             </s:form>
         </div>
     </body>
-    
     
      <footer>
             <hr />
