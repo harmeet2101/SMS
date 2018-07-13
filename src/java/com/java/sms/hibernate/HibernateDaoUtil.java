@@ -6,6 +6,8 @@
 package com.java.sms.hibernate;
 
 import com.java.sms.bean.RegisterBean;
+import com.java.sms.bean.StudentBean;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -19,11 +21,11 @@ public class HibernateDaoUtil {
     
     
     
-    public static void saveOrUpdate(Object obj){
+    public static int saveOrUpdate(Object obj){
         
         Session session = null;
         Transaction transaction = null;
-        
+        int count=0;
         try{
             
             session = HibernateConnector.getInstance().getCurrentSession();
@@ -32,10 +34,13 @@ public class HibernateDaoUtil {
             session.saveOrUpdate(obj);
             transaction.commit();
             session.close();
+            count++;
         }catch(Exception e){
             e.printStackTrace();
             transaction.rollback();
         }
+        
+        return count;
     }
     
     public static RegisterBean authenticateUser(String email,String password){
@@ -59,4 +64,40 @@ public class HibernateDaoUtil {
         return  registerBean;
     }
     
+    
+    public static int updateProfile(int id,RegisterBean rb){
+        
+        int count =0;
+        
+        Session session = HibernateConnector.getInstance().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        String qry="";
+        Query q=null;
+        
+        qry = "update RegisterBean set first_name=:fn ,last_name=:ln , "
+                + "email_id=:email, user_type=:ut where reg_id=:id";
+        q = session.createQuery(qry);
+        q.setString("fn",rb.getFirstName());
+        q.setString("ln",rb.getLastName());
+        q.setString("email", rb.getEmail());
+        q.setString("ut", rb.getRegisterationType());
+        q.setInteger("id", id);
+        q.executeUpdate();
+        transaction.commit();
+        session.close();
+        count++;
+        return count;
+    }
+    
+    
+    public static List<StudentBean> getAllStudents(){
+        
+        Session session = HibernateConnector.getInstance().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        String qry="from StudentBean";
+        Query q=session.createQuery(qry);
+        List<StudentBean> list =  q.list();
+        
+        return list;
+    }
 }

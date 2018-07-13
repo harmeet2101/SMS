@@ -13,19 +13,13 @@
         <link href="css/myStyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <h4>Student Management System</h4><hr />
-        <table align="center" style="padding-top: 30px">
-            <tr>
-                <td>
-                    <a href="adminLoginPage.jsp">Login</a> | <a href="registerPage.jsp">Register</a>
-                </td>
-            </tr>
-              
-        </table>
-        
-        <footer>
-            <hr />
-            <p align="center" style="color: green"> All Rights are reserved with Test Tech pvt ltd.</p>
-        </footer>
+        <%
+            session = request.getSession(false);
+            if(session==null || session.getAttribute("username")!=null){
+                request.getRequestDispatcher("homePage.jsp").forward(request, response);
+            }else{
+                request.getRequestDispatcher("welcomePage.jsp").forward(request, response);
+            }
+        %>
     </body>
 </html>

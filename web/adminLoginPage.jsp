@@ -18,7 +18,8 @@
         <h5 style="text-align: center;color: black">Login</h5>
         
         <div align="center">
-            <s:form action="loginAction" method="post">
+            <s:actionerror cssClass="errorMessage"/>
+            <s:form action="loginAction" method="post">               
                 <s:textfield name="email" type="text" label="Email"/>
                 <s:textfield name="password" type="password" label="Password"/>
                 <s:select

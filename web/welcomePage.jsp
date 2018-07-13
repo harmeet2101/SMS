@@ -1,6 +1,6 @@
 <%-- 
-    Document   : homePage
-    Created on : Jul 11, 2018, 2:11:05 PM
+    Document   : index
+    Created on : Jul 10, 2018, 8:32:39 PM
     Author     : harmeet.singh
 --%>
 
@@ -9,27 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home Page</title>
+        <title>Start Page</title>
         <link href="css/myStyle.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <h4>Student Management System</h4><hr />
+        <table align="center" style="padding-top: 30px">
+            <tr>
+                <td>
+                    <a href="adminLoginPage.jsp">Login</a> | <a href="registerPage.jsp">Register</a>
+                </td>
+            </tr>
+              
+        </table>
         
-        <h5>Welcome, ${username}</h5>
-        <div style="float: left">
-        <a href="addStudent.jsp">Add Student</a> | 
-        <a href="allStudents">View All Students</a>    
-        </div>
-        
-        <div style="float: right">
-        <a href="viewProfile">Profile</a> | 
-        <a href="doLogout">Logout</a>    
-        </div>
-        
-    </body>
-    
-    <footer>
+        <footer>
             <hr />
             <p align="center" style="color: green"> All Rights are reserved with Test Tech pvt ltd.</p>
         </footer>
+    </body>
 </html>

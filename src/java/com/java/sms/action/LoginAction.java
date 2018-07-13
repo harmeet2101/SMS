@@ -26,7 +26,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
 
    private LoginBean loginBean;
    private SessionMap<String,Object> sessionMap;
-   
+
    public LoginBean getModel(){
        
        loginBean = new LoginBean();
@@ -40,26 +40,58 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginBean>
     
     
     @Action(value = "/loginAction",results = {@Result(name = "success",location = "/homePage.jsp")
-    ,@Result(name = "input",location = "/errorPage.jsp")
+    ,@Result(name = "error",location = "/adminLoginPage.jsp"),@Result(name = "input",location = "/adminLoginPage.jsp")
     })
     public String execute() {
 	
-        RegisterBean rb = HibernateDaoUtil.authenticateUser(loginBean.getEmail(), loginBean.getPassword());
+         RegisterBean rb= HibernateDaoUtil.authenticateUser(loginBean.getEmail(), loginBean.getPassword());
         if(rb!=null){
         
             sessionMap.put("username", rb.getFirstName());
             sessionMap.put("isLoggedIn", true);
-            
+            sessionMap.put("user", rb);
             return SUCCESS;
         }
-        else
-            return INPUT;
-    
+        else{
+            addActionError("Try Again.login Failed");
+            return ERROR;
+        }
     }    
 
     @Override
     public void setSession(Map<String, Object> map) {
 
         this.sessionMap = (SessionMap)map;
+    }
+    
+    @Action(value = "/doLogout",results = {
+        @Result(name = "success",type = "redirect" ,location = "/welcomePage.jsp")
+    })
+    public String doLogout(){
+        
+        this.sessionMap.put("username", null);
+        sessionMap.invalidate();
+        return "success";
+    }
+    
+    @Action(value = "/viewProfile",results = {
+        @Result(name = "success",location = "/profilePage.jsp")
+    })
+    public String viewProfile(){
+        
+        return SUCCESS;
+    }
+
+    @Override
+    public void validate() {
+
+        try{
+        if( loginBean!=null && loginBean.getEmail().length()<1)
+            addFieldError("email", "Email required");
+        if(loginBean!=null &&loginBean.getPassword().length()<1)
+            addFieldError("password", "Password required");
+        }catch(Exception e){
+            e.printStackTrace();
+        }        
     }
 }
